@@ -6,6 +6,7 @@ Command to remove taint from the node
 
 kubectl taint node <node-name> environment=dev:NoSchedule- 
 
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -29,3 +30,4 @@ spec:
     operator: "Equal"
     value: "true"
     effect: "NoSchedule"
+```
