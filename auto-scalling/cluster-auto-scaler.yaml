@@ -5,6 +5,8 @@ metadata:
   labels:
     k8s-addon: cluster-autoscaler.addons.k8s.io
     k8s-app: cluster-autoscaler
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::516624749513:role/AmazonEKSClusterAutoscalerRole
   name: cluster-autoscaler
   namespace: kube-system
 ---
@@ -160,7 +162,7 @@ spec:
             - --cloud-provider=aws
             - --skip-nodes-with-local-storage=false
             - --expander=least-waste
-            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/Demo-cluster
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/testing-cluster
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs/ca-certificates.crt #/etc/ssl/certs/ca-bundle.crt for Amazon Linux Worker Nodes
